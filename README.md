@@ -1,7 +1,6 @@
 <!-- PROFILE HEADER -->
 <h1 align="center">Olá! Eu sou Thalles Saraiva 👋</h1>
 <p align="center">
-  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="50"/>  
   Estudante de Ciências da Computação | Full-Stack & Software Engineer | Apaixonado por Automação e Tecnologias Web
 </p>
 
