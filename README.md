@@ -4,7 +4,6 @@
 </p>
 
 <p align="center">
-  <!-- Ferramentas -->
   <a href="https://www.python.org/" target="_blank"><img alt="Python" src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white"/></a>
   <a href="https://www.javascript.com/" target="_blank"><img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank"><img alt="HTML5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/></a>
@@ -16,15 +15,12 @@
 </p>
 
 <p align="center">
-  <!-- Contatos -->
   <a href="https://www.linkedin.com/in/thalles-saraiva" target="_blank"><img alt="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
   <a href="https://github.com/h1esoka" target="_blank"><img alt="GitHub" src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white"/></a>
   <a href="mailto:seuemail@email.com" target="_blank"><img alt="Email" src="https://img.shields.io/badge/-Email-D14836?style=flat-square&logo=gmail&logoColor=white"/></a>
 </p>
 
 ---
-
-## 📊 GitHub Stats
 
 <p align="center">
   <img alt="Thalles Saraiva's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=h1esoka&show_icons=true&theme=radical"/>
