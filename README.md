@@ -43,15 +43,6 @@
 
 ---
 
-## ⚡ Minhas Conquistas
-
-<p align="center">
-  <img alt="GitHub Streak" src="https://github-readme-streak-stats.herokuapp.com/?user=h1esoka&theme=radical"/>
-  <img alt="GitHub Trophy" src="https://github-profile-trophy.vercel.app/?username=h1esoka&theme=radical&no-frame=true&margin-w=10"/>
-</p>
-
----
-
 ## 🚀 Projetos em Destaque
 
 | Projeto | Descrição | Link |
