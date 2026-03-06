@@ -1,84 +1,80 @@
-<h1 align="center">Olá! Eu sou Thalles Saraiva 👋</h1>
+<h1 align="center">Thalles Saraiva</h1>
 
 <p align="center">
-  Computer Science Student @ UFCG <br>
-  Software Developer | Backend • Automation • Desktop Apps
+Computer Science Student @ UFCG  
+Backend • Automation • Software Engineering
 </p>
 
 ---
 
-### 🚀 Sobre mim
+## 🚀 About Me
 
-- 🎓 Estudante de **Ciência da Computação - UFCG**
-- 💻 Interesse em **Backend, Automação e Engenharia de Software**
-- ⚙️ Experiência com **Node.js, Python e desenvolvimento de ferramentas**
-- 🤖 Desenvolvendo **chatbots e automações**
-- 📊 Automação e organização de **dados e planilhas**
+- 🎓 Computer Science student
+- 💻 Focused on **Backend Development**
+- 🤖 Building **bots, automation tools and desktop apps**
+- 📊 Data organization and automation with **Python**
+- ⚙️ Experience with **Node.js ecosystems**
 
 ---
 
-### 🛠 Tech Stack
+## 🛠 Tech Stack
 
 <p align="center">
 
-<a href="https://www.python.org/" target="_blank">
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
-</a>
-
-<a href="https://nodejs.org/" target="_blank">
-<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"/>
-</a>
-
-<a href="https://expressjs.com/" target="_blank">
-<img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white"/>
-</a>
-
-<a href="https://www.postgresql.org/" target="_blank">
-<img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white"/>
-</a>
-
-<a href="https://sequelize.org/" target="_blank">
-<img src="https://img.shields.io/badge/Sequelize-52B0E7?style=flat-square&logo=sequelize&logoColor=white"/>
-</a>
-
-<a href="https://www.electronjs.org/" target="_blank">
-<img src="https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white"/>
-</a>
-
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
-</a>
-
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
-</a>
-
-<a href="https://git-scm.com/" target="_blank">
-<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
-</a>
+<img src="https://skillicons.dev/icons?i=python,nodejs,express,postgres,git,html,css,electron"/>
 
 </p>
 
 ---
 
-### 📊 GitHub Stats
+## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=tokyonight" />
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=tokyonight&hide_border=true"/>
+
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
+
 </p>
 
 ---
 
-### 🌐 Contato
+## 🔥 GitHub Streak
+
+<p align="center">
+
+<img src="https://streak-stats.demolab.com?user=thallesgsrv&theme=tokyonight&hide_border=true"/>
+
+</p>
+
+---
+
+## 🐍 Contribution Snake
+
+<p align="center">
+
+<img src="https://raw.githubusercontent.com/thallesgsrv/thallesgsrv/output/snake.svg" alt="snake"/>
+
+</p>
+
+---
+
+## 🌐 Contact
 
 <p align="center">
 
 <a href="https://www.linkedin.com/in/thallesgsrv">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/>
+<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
 <a href="mailto:gabrielthalles19@gmail.com">
-<img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white"/>
+<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>
 
+</p>
+
+---
+
+<p align="center">
+⚡ Always learning, building and automating things.
 </p>
