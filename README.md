@@ -64,8 +64,8 @@
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=h1esoka&show_icons=true&theme=radical"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=h1esoka&layout=compact&theme=radical"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=radical"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=radical"/>
 </p>
 
 ---
