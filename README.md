@@ -21,7 +21,7 @@ Backend • Automation • Software Engineering
 
 <p align="center">
 
-<img src="https://skillicons.dev/icons?i=python,nodejs,express,postgres,git,html,css,electron"/>
+<img src="https://skillicons.dev/icons?i=python,nodejs,java,express,postgres,git,html,css,electron,"/>
 
 </p>
 
