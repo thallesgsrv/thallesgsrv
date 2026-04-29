@@ -12,17 +12,17 @@
 
 ## 🚀 About Me
 
-- 🎓 **CS student** at UFCG (4th year)
+- 🎓 **CS student** at UFCG (2º período)
 - 💻 Building **backend systems, bots and automation tools**
 - 🐍 Core: **Python** | ☕ Also: **Java, Node.js**
-- 🔧 Automating everything I can
+- 🐧 Linux user
 
 ---
 
 ## 🛠 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,nodejs,java,express,fastapi,postgres,sqlite,git,electron,docker,linux"/>
+  <img src="https://skillicons.dev/icons?i=python,nodejs,java,express,postgres,sqlite,git,electron,linux"/>
 </p>
 
 ---
@@ -30,7 +30,7 @@
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img height="170em" src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true"/>
+  <img height="170em" src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=tokyonight&hide_border=true"/>
   <img height="170em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
 </p>
 
@@ -57,13 +57,10 @@
   <a href="mailto:gabrielthalles19@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
-  <a href="https://github.com/thallesgsrv">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-  </a>
 </p>
 
 ---
 
 <p align="center">
-  ⚡ *"Code. Automate. Repeat."*
+  ⚡ *Always learning, building and automating things.*
 </p>
