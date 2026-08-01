@@ -1,15 +1,11 @@
 <h1 align="center">Thalles Saraiva</h1>
 
 <p align="center">
-  Computer Science Student @ UFCG
+  Computer Science Student at UFCG
 </p>
 
 <p align="center">
   Backend Development • Automation • Software Engineering
-</p>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=thallesgsrv&color=blue&style=flat-square&label=Profile+Views"/>
 </p>
 
 ---
@@ -40,7 +36,7 @@ Currently working with:
 ## GitHub Stats
 
 <p align="center">
-  <img height="160" src="[https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=thallesgsrv&show_icons=true&theme=tokyonight)"/>
+  <img height="160" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
 </p>
 
 ---
