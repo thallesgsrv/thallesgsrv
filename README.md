@@ -33,14 +33,6 @@ Currently working with:
 
 ---
 
-## GitHub Stats
-
-<p align="center">
-  <img height="160" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
-</p>
-
----
-
 ## Contact
 
 <p align="center">
