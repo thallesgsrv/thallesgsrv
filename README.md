@@ -1,65 +1,63 @@
 <h1 align="center">Thalles Saraiva</h1>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=thallesgsrv&color=blue&style=flat-square&label=Visitors"/>
+  Computer Science Student @ UFCG
 </p>
 
 <p align="center">
-  🎓 Computer Science @ UFCG • Backend • Automation • Software Engineering
+  Backend Development • Automation • Software Engineering
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=thallesgsrv&color=blue&style=flat-square&label=Profile+Views"/>
 </p>
 
 ---
 
-## 🚀 About Me
+## About
 
-- 🎓 **CS student** at UFCG (2º período)
-- 💻 Building **backend systems, bots and automation tools**
-- 🐍 Core: **Python** | ☕ Also: **Java, Node.js**
-- 🐧 Linux user
+Computer Science student at the Federal University of Campina Grande (UFCG).
+
+Interested in backend development, automation, software engineering and building efficient solutions through code.
+
+Currently working with:
+
+- Backend systems
+- Automation tools
+- APIs and databases
+- Competitive programming
 
 ---
 
-## 🛠 Tech Stack
+## Technologies
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,nodejs,java,express,postgres,sqlite,git,electron,linux"/>
+  <img src="https://skillicons.dev/icons?i=python,java,nodejs,typescript,express,postgres,sqlite,git,linux"/>
 </p>
 
 ---
 
-## 📊 GitHub Stats
+## GitHub Stats
 
 <p align="center">
-  <img height="170em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
-</p>
-
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=thallesgsrv&theme=tokyonight&hide_border=true"/>
+  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=tokyonight&hide_border=true"/>
 </p>
 
 ---
 
-## 🐍 Contribution Snake
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/thallesgsrv/thallesgsrv/output/snake.svg"/>
-</p>
-
----
-
-## 📫 Contact
+## Contact
 
 <p align="center">
   <a href="https://www.linkedin.com/in/thallesgsrv">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+    <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin"/>
   </a>
   <a href="mailto:gabrielthalles19@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Email-Contact-red?style=flat&logo=gmail"/>
   </a>
 </p>
 
 ---
 
 <p align="center">
-  ⚡ *Always learning, building and automating things.*
+  Building, learning and improving every day.
 </p>
