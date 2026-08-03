@@ -28,7 +28,7 @@ Currently working with:
 ## Technologies
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,java,nodejs,typescript,express,postgres,sqlite,git,linux"/>
+  <img src="https://skillicons.dev/icons?i=python,java,nodejs,typescript,express,git,linux"/>
 </p>
 
 ---
