@@ -1,15 +1,6 @@
 <p align="center">
   <img src="th.jpg" width="100%" alt="Thalles Saraiva">
 </p>
-
-<p align="center">
-  Computer Science Student at UFCG
-</p>
-
-<p align="center">
-  Backend Development • Automation • Software Engineering
-</p>
-
 ---
 
 ## About
