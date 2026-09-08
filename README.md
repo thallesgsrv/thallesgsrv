@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./th.png" width="100%" alt="Thalles Saraiva">
+  <img src="th.png" width="100%" alt="Thalles Saraiva">
 </p>
 
 <h1 align="center">Thalles Saraiva</h1>
