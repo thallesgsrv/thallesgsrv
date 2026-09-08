@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./th.png" width="100%" alt="Thalles Saraiva">
+</p>
+
 <h1 align="center">Thalles Saraiva</h1>
 
 <p align="center">
@@ -18,10 +22,10 @@ Interested in backend development, automation, software engineering and building
 
 Currently working with:
 
-- Backend systems
-- Automation tools
-- APIs and databases
-- Competitive programming
+* Backend systems
+* Automation tools
+* APIs and databases
+* Competitive programming
 
 ---
 
