@@ -2,8 +2,6 @@
   <img src="th.jpg" width="100%" alt="Thalles Saraiva">
 </p>
 
-<h1 align="center">Thalles Saraiva</h1>
-
 <p align="center">
   Computer Science Student at UFCG
 </p>
