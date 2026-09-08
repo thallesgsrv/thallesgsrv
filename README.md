@@ -1,8 +1,6 @@
 <p align="center">
   <img src="th.jpg" width="100%" alt="Thalles Saraiva">
 </p>
----
-
 ## About
 
 Computer Science student at the Federal University of Campina Grande (UFCG).
