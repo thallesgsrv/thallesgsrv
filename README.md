@@ -2,35 +2,19 @@
   <img src="th.jpg" width="100%" alt="Thalles Saraiva">
 </p>
 
-<h1 align="center">Hi 👋, I'm Thalles Saraiva</h1>
-<p align="center">
-  <b>Computer Science Student @ UFCG | Software Engineering & Automation</b>
-</p>
+# Thalles Saraiva
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/thallesgsrv">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:gabrielthalles19@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
-</p>
+Estudante de Ciência da Computação na UFCG, focado em backend e automação. Gosto de entender como as coisas funcionam por baixo do capô — desde a lógica de um algoritmo até o comportamento de um sistema em produção.
+
+**Formação:** Ciência da Computação — UFCG (2025 – atual)
+**Experiência:** Ex-estagiário de TI na Redenet
+**Interesses:** engenharia de backend, design de APIs, automação de dados, programação competitiva e cibersegurança
+
+Atualmente treinando algoritmos e estruturas de dados, e estudando os fundamentos de segurança em aplicações backend.
 
 ---
 
-## 📌 About Me
-
-Computer Science student at the **Federal University of Campina Grande (UFCG)**. 
-
-Passionate about building scalable backend systems, workflow automations, and solving complex algorithmic challenges.
-
-* 🎓 **Degree:** B.S. in Computer Science (2025 – Present)
-* 💼 **Background:** Ex-IT Intern at Redenet TI
-* ⚡ **Focus Areas:** Backend Engineering, API Design, Data Automation, Competitive Programming
-
----
-
-## 🛠️ Tech Stack
+## Stack
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=python,java,js,ts,nodejs,express,postgres,html,css,git,linux,vscode&perline=6" />
@@ -38,17 +22,7 @@ Passionate about building scalable backend systems, workflow automations, and so
 
 ---
 
-## 🚀 Featured Projects
-
-| Project | Description | Tech Stack |
-| :--- | :--- | :--- |
-| **Discord AI Bot** | Private AI-assisted interface powered by local LLMs. | `Python` `Ollama` `Discord API` |
-| **ASCII Camera** | Real-time computer vision pipeline with person segmentation. | `Python` `OpenCV` `YOLOv8` |
-| **Miller-Rabin Test** | Probabilistic primality test implementation and stress test pipeline. | `Python` `Algorithms` |
-
----
-
-## 📊 GitHub Stats
+## GitHub Stats
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=thallesgsrv&show_icons=true&theme=dark&hide_border=true&count_private=true" height="150"/>
@@ -57,6 +31,6 @@ Passionate about building scalable backend systems, workflow automations, and so
 
 ---
 
-<p align="center">
-  <i>Building, learning and improving every day.</i>
-</p>
+## Contato
+
+📫 [LinkedIn](https://linkedin.com/in/thallesgsrv) · [E-mail](gabrielthalles19@gmail.com)
