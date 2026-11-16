@@ -1,35 +1,20 @@
-<p align="center">
-  <img src="th.jpg" width="100%" alt="Thalles Saraiva">
-</p>
+<div align="center">
 
-# Thalles Saraiva
+<img src="./profile-card.svg" alt="Thalles no terminal" width="100%"/>
 
-Estudante de Ciência da Computação, com foco em backend e automação de sistemas.
+</div>
 
-- **Formação:** Ciência da Computação — UFCG (2025 – atual)
-- **Experiência:** Ex-estagiário de TI, Redenet
-- **Áreas de interesse:** engenharia de backend, design de APIs, automação de dados
-- **Em desenvolvimento:** cibersegurança, algoritmos e estruturas de dados aplicados a programação competitiva
+<br/>
 
----
+```bash
+$ ls projetos/
+```
 
-## Stack técnica
+<div align="center">
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,java,js,ts,nodejs,express,postgres,html,css,git,linux,vscode&perline=6" />
-</p>
+<a href="https://github.com/thallesgsrv/Big-O-Library"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thallesgsrv&repo=Big-O-Library&hide_border=true&bg_color=0D1117&title_color=7EE787&text_color=C9D1D9&icon_color=39D353" alt="Big-O-Library"/></a>
+<a href="https://github.com/thallesgsrv/Chatbot"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thallesgsrv&repo=Chatbot&hide_border=true&bg_color=0D1117&title_color=7EE787&text_color=C9D1D9&icon_color=39D353" alt="Chatbot"/></a>
+<a href="https://github.com/thallesgsrv/nasa-space-apps"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thallesgsrv&repo=nasa-space-apps&hide_border=true&bg_color=0D1117&title_color=7EE787&text_color=C9D1D9&icon_color=39D353" alt="nasa-space-apps"/></a>
+<a href="https://github.com/thallesgsrv/eda"><img src="https://github-readme-stats.vercel.app/api/pin/?username=thallesgsrv&repo=eda&hide_border=true&bg_color=0D1117&title_color=7EE787&text_color=C9D1D9&icon_color=39D353" alt="eda"/></a>
 
----
-
-## GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats-fast.vercel.app/api?username=thallesgsrv&show_icons=true&theme=dark&hide_border=true&count_private=true" height="150"/>
-  <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=thallesgsrv&layout=compact&theme=dark&hide_border=true" height="150"/>
-</p>
-
----
-
-## Contato
-
-📫 [LinkedIn](https://linkedin.com/in/thallesgsrv) · [E-mail](gabrielthalles19@gmail.com)
+</div>
