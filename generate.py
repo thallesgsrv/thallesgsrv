@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gera os SVGs do perfil do GitHub (cartão estilo terminal + cards de projetos)
+"""Gera os cards SVG do perfil do GitHub (pasta cards/)
 e atualiza a seção de projetos do README.md.
 
   GH_TOKEN=<token> python generate.py      # dados reais (usado pelo GitHub Actions)
@@ -27,10 +27,11 @@ TOKEN = os.environ.get("GH_TOKEN", "")
 
 # ── Personalização ───────────────────────────────────────────────────────────
 NAME, SUB = "Thalles Gabriel", "Saraiva de Lira Silva"
+# Cada linha aparece no cartão como "rótulo: valor". Adicione/remova à vontade (ideal: 2 a 4 linhas).
+# Sugestões úteis: ("foco:", "..."), ("estudando:", "..."), ("aberto a:", "estágio · projetos open source")
 ABOUT = [
     ("curso:", "Ciência da Computação"),
     ("onde:", "UFCG · Campina Grande, PB"),
-    ("raízes:", "Cajazeiras, Paraíba"),
 ]
 # Usados só se você não tiver repositórios fixados (pinned) no perfil.
 FALLBACK_REPOS = ["Big-O-Library", "Chatbot", "nasa-space-apps", "eda"]
@@ -174,29 +175,74 @@ def load_ascii():
     return lines, max(len(l) for l in lines)
 
 
-# ── Cartão principal ─────────────────────────────────────────────────────────
-def build_card(d: dict) -> str:
+# ── Base dos cards ───────────────────────────────────────────────────────────
+W, M, OP = 880, 36, 6          # largura, margem interna, respiro vertical embutido (empilha sem espaços)
+CSS = """<style>
+@keyframes pop{from{opacity:0;transform:translateY(7px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes growy{from{transform:scaleY(0)}}
+@keyframes growx{from{transform:scaleX(0)}}
+@keyframes blink{50%{fill:transparent}}
+.cur{fill:#c9d1d9}
+@media (prefers-reduced-motion:no-preference){
+.pop{animation:pop .55s ease-out backwards}
+.fade{animation:fade .35s ease-out backwards}
+.gy{transform-box:fill-box;transform-origin:50% 100%;animation:growy .8s cubic-bezier(.2,.8,.2,1) backwards}
+.gx{transform-box:fill-box;transform-origin:0 50%;animation:growx .8s cubic-bezier(.2,.8,.2,1) backwards}
+.cur{animation:blink 1.1s steps(1) infinite}
+}
+</style>"""
+
+
+class Card:
+    """Janela de terminal de 880px; coordenadas relativas ao topo da janela."""
+
+    def __init__(self, cmd: str, title: str):
+        self.cmd, self.title, self.out, self.defs = cmd, title, [], []
+
+    def t(self, x, y, txt, fill=C["fg"], size=14, weight=400, anchor="start", cls="", delay=None):
+        a = f' class="{cls}"' if cls else ""
+        a += f' style="animation-delay:{delay:.2f}s"' if delay is not None else ""
+        self.out.append(f'<text{a} x="{x:.1f}" y="{y:.1f}" fill="{fill}" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{escape(str(txt))}</text>')
+
+    def raw(self, s):
+        self.out.append(s)
+
+    def prompt(self, y, cmd, cursor=False, x=M):
+        cur = '<tspan class="cur"> _</tspan>' if cursor else ""
+        self.out.append(f'<text x="{x}" y="{y}" font-size="14"><tspan fill="{C["green"]}" font-weight="600">{USER}@github</tspan>'
+                        f'<tspan fill="{C["dim"]}"> ~ </tspan><tspan fill="{C["fg"]}">$ {escape(cmd)}</tspan>{cur}</text>')
+
+    def render(self, h: int) -> str:
+        H = h + 2 * OP
+        bar = f"M0.5 34.5V12.5a12 12 0 0 1 12-12H{W - 12.5}a12 12 0 0 1 12 12v22z"
+        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{escape(self.title)}" font-family="{FONT}">
+<title>{escape(self.title)}</title>
+{CSS}
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111722"/><stop offset="1" stop-color="{C["bg"]}"/></linearGradient>{"".join(self.defs)}</defs>
+<g transform="translate(0,{OP})">
+<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="12" fill="url(#bg)" stroke="{C["line"]}"/>
+<path d="{bar}" fill="{C["bar"]}"/><line x1="0" y1="34.5" x2="{W}" y2="34.5" stroke="{C["line"]}"/>
+<circle cx="22" cy="17.5" r="5.5" fill="#ff5f56"/><circle cx="40" cy="17.5" r="5.5" fill="#ffbd2e"/><circle cx="58" cy="17.5" r="5.5" fill="#27c93f"/>
+<text x="{W / 2}" y="22" text-anchor="middle" fill="{C["dim"]}" font-size="12">{USER}@github: ~$ {escape(self.cmd)}</text>
+{chr(10).join(self.out)}
+</g>
+</svg>
+'''
+
+
+def updated_stamp() -> str:
+    return "atualizado em " + datetime.now(BRT).strftime("%d/%m/%Y %H:%M") + " (BRT)"
+
+
+# ── Card 1: contribuições ────────────────────────────────────────────────────
+def card_heatmap(d: dict) -> str:
     days = d["days"]
     s, lvl = stats(days), make_level(days)
-    W, M = 940, 46
-    out: list[str] = []
-
-    def t(x, y, txt, fill=C["fg"], size=14, weight=400, anchor="start"):
-        out.append(f'<text x="{x:.1f}" y="{y:.1f}" fill="{fill}" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{escape(str(txt))}</text>')
-
-    def prompt(y, cmd, cursor=False):
-        cur = '<tspan class="cur"> _</tspan>' if cursor else ""
-        out.append(f'<text x="{M}" y="{y}" font-size="14"><tspan fill="{C["green"]}" font-weight="600">{USER}@github</tspan>'
-                   f'<tspan fill="{C["dim"]}"> ~ </tspan><tspan fill="{C["fg"]}">$ {escape(cmd)}</tspan>{cur}</text>')
-
-    def divider(y):
-        out.append(f'<line x1="{M}" y1="{y}" x2="{W - M}" y2="{y}" stroke="{C["line"]}"/>')
-
-    # 1) contribuições ---------------------------------------------------------
-    prompt(76, "./contributions.sh")
-    offset = (days[0][0].weekday() + 1) % 7  # domingo = 0
+    c = Card("./contributions.sh", f"Contribuições de {NAME} no último ano")
+    offset = (days[0][0].weekday() + 1) % 7
     ncols = (len(days) + offset + 6) // 7
-    gx, gap, gy = M + 30, 3, 112
+    gx, gap, gy = M + 30, 3, 74
     step = (W - M - gx + gap) / ncols
     cell = step - gap
 
@@ -209,142 +255,144 @@ def build_card(d: dict) -> str:
     if len(labels) > 1 and labels[1][0] - labels[0][0] < 3:
         labels.pop(0)
     for col, m in labels:
-        t(gx + col * step, gy - 9, MONTHS[m - 1], C["dim"], 11)
+        c.t(gx + col * step, gy - 10, MONTHS[m - 1], C["dim"], 11)
     for r, lab in ((1, "seg"), (3, "qua"), (5, "sex")):
-        t(M, gy + r * step + cell - 2, lab, C["dim"], 11)
-    for i, (_, c) in enumerate(days):
+        c.t(M, gy + r * step + cell - 2, lab, C["dim"], 11)
+
+    cols: dict = {}
+    for i, (_, v) in enumerate(days):
         col, row = (i + offset) // 7, (i + offset) % 7
-        out.append(f'<rect x="{gx + col * step:.1f}" y="{gy + row * step:.1f}" width="{cell:.1f}" height="{cell:.1f}" rx="2.5" fill="{LEVELS[lvl(c)]}"/>')
+        cols.setdefault(col, []).append(f'<rect x="{gx + col * step:.1f}" y="{gy + row * step:.1f}" width="{cell:.1f}" height="{cell:.1f}" rx="2.5" fill="{LEVELS[lvl(v)]}"/>')
+    for col, rects in cols.items():
+        c.raw(f'<g class="pop" style="animation-delay:{0.15 + col * 0.016:.3f}s">{"".join(rects)}</g>')
 
-    hy = gy + 7 * step + 18
-    t(M, hy, f"{br(s['total'])} contribuições no último ano", C["dim"], 12)
+    hy = gy + 7 * step + 26
+    c.t(M, hy, f"{br(s['total'])} contribuições no último ano", C["fg"], 13, 600)
     lx = W - M - 142
-    t(lx, hy, "menos", C["dim"], 11)
+    c.t(lx, hy, "menos", C["dim"], 11)
     for k in range(5):
-        out.append(f'<rect x="{lx + 40 + k * 15}" y="{hy - 10}" width="11" height="11" rx="2.5" fill="{LEVELS[k]}"/>')
-    t(lx + 40 + 5 * 15 + 3, hy, "mais", C["dim"], 11)
-    divider(hy + 20)
+        c.raw(f'<rect x="{lx + 40 + k * 15}" y="{hy - 10}" width="11" height="11" rx="2.5" fill="{LEVELS[k]}"/>')
+    c.t(lx + 40 + 5 * 15 + 3, hy, "mais", C["dim"], 11)
+    return c.render(int(hy + 24))
 
-    # 2) whoami ------------------------------------------------------------------
-    wy = hy + 54
-    prompt(wy, "whoami")
-    rx = 500
-    t(rx, wy + 36, NAME, C["white"], 26, 700)
-    t(rx, wy + 58, SUB, C["dim"], 14)
-    about = ABOUT + [("github:", f"desde {d['since']} · {d['nrepos']} repos · {d['followers']} seguidores")]
-    for i, (k, v) in enumerate(about):
-        out.append(f'<text x="{rx}" y="{wy + 88 + i * 20}" font-size="14"><tspan fill="{C["blue"]}">{k}</tspan><tspan fill="{C["fg"]}"> {escape(v)}</tspan></text>')
 
-    boxes = [("streak atual", s["cur"], "dias"), ("maior streak", s["longest"], "dias"),
-             ("contribuições", br(s["total"]), "no ano"), ("dias ativos", s["active"], f"de {len(days)}"),
-             ("melhor dia", s["best"], "contribuições"), ("média/dia ativo", f"{s['avg']:.1f}".replace(".", ","), "contribuições")]
-    bw, bh, by0 = 191, 62, wy + 172
-    for i, (lab, val, sub) in enumerate(boxes):
-        x, y = rx + (i % 2) * (bw + 12), by0 + (i // 2) * (bh + 10)
-        out.append(f'<rect x="{x}" y="{y}" width="{bw}" height="{bh}" rx="7" fill="{C["bg"]}" stroke="{C["line"]}"/>')
-        t(x + 14, y + 19, lab, C["dim"], 11)
-        t(x + 14, y + 47, val, C["accent"], 24, 700)
-        t(x + 14 + 14.4 * len(str(val)) + 8, y + 47, sub, C["dim"], 11)
-
-    cy = by0 + 3 * (bh + 10) + 14
-    t(rx, cy, "contribuições / mês", C["dim"], 11)
-    per: dict = {}
-    for dt, c in days:
-        per[(dt.year, dt.month)] = per.get((dt.year, dt.month), 0) + c
-    keys = sorted(per)[-12:]
-    mm = max(per[k] for k in keys) or 1
-    base, hmax = cy + 14 + 62, 62
-    pitch = (W - M - rx) / len(keys)
-    bwid = pitch - 9
-    for i, k in enumerate(keys):
-        h = max(2, per[k] / mm * hmax)
-        x = rx + i * pitch
-        out.append(f'<rect x="{x:.1f}" y="{base - h:.1f}" width="{bwid:.1f}" height="{h:.1f}" rx="2.5" fill="{C["accent"]}" opacity="{0.55 + 0.45 * per[k] / mm:.2f}"/>')
-        t(x + bwid / 2, base + 15, MONTHS[k[1] - 1], C["dim"], 9.5, 400, "middle")
-    right_end = base + 20
-
-    # retrato ASCII: grade fixa (textLength) para ficar igual em qualquer fonte
+# ── Card 2: whoami (retrato + perfil + linguagens) ───────────────────────────
+def card_profile(d: dict) -> str:
+    c = Card("./whoami", f"{NAME}: retrato em ASCII, perfil e linguagens")
     lines, maxlen = load_ascii()
-    cw = 410 / maxlen
+    cw = 380 / maxlen
     lh = cw * 1.85
     ah = len(lines) * lh
-    ay = wy + 16 + max(0, (right_end - wy - 16 - ah) / 2)
+    top = 58
+    rx, rw = 470, W - M - 470
+
     asc = []
     for i, l in enumerate(lines):
         if not l.strip():
             continue
-        lead = len(l) - len(l.lstrip())
-        txt = l.strip()
-        asc.append(f'<text x="{M + lead * cw:.1f}" y="{ay + (i + 1) * lh:.1f}" textLength="{len(txt) * cw:.1f}" lengthAdjust="spacing">{escape(txt)}</text>')
-    out.append(f'<g xml:space="preserve" fill="url(#asc)" style="font-size:{cw / 0.6:.2f}px;white-space:pre">{"".join(asc)}</g>')
-    y1 = max(right_end, ay + ah) + 22
-    divider(y1)
+        lead, txt = len(l) - len(l.lstrip()), l.strip()
+        asc.append(f'<text class="fade" style="animation-delay:{0.1 + i * 0.025:.3f}s" x="{M + lead * cw:.1f}" y="{top + (i + 1) * lh:.1f}" textLength="{len(txt) * cw:.1f}" lengthAdjust="spacing">{escape(txt)}</text>')
+    c.defs.append(f'<linearGradient id="asc" gradientUnits="userSpaceOnUse" x1="0" y1="{top:.0f}" x2="0" y2="{top + ah:.0f}"><stop offset="0" stop-color="#b6f5c0"/><stop offset="1" stop-color="#2ea043"/></linearGradient>')
+    c.raw(f'<g xml:space="preserve" fill="url(#asc)" style="font-size:{cw / 0.6:.2f}px;white-space:pre">{"".join(asc)}</g>')
 
-    # 3) linguagens ------------------------------------------------------------
-    ly = y1 + 34
-    prompt(ly, "./languages.sh")
     langs = d["langs"]
     total = sum(x[2] for x in langs) or 1
-    top, rest = langs[:6], langs[6:]
-    items = [(n, col, sz) for n, col, sz in top]
-    if rest:
-        items.append(("Outras", "#6e7681", sum(x[2] for x in rest)))
-    bx, bwid_all, by, bhh = M, W - 2 * M, ly + 20, 12
-    out.append(f'<clipPath id="lb"><rect x="{bx}" y="{by}" width="{bwid_all}" height="{bhh}" rx="6"/></clipPath><g clip-path="url(#lb)">')
-    x = bx
-    for n, col, sz in items:
-        w = max(4, sz / total * bwid_all)
-        out.append(f'<rect x="{x:.1f}" y="{by}" width="{w - 2:.1f}" height="{bhh}" fill="{col}"/>')
-        x += w
-    out.append("</g>")
-    lx, lyy = M, by + bhh + 26
-    for n, col, sz in items:
-        pct = f"{sz / total * 100:.1f}%".replace(".", ",")
-        wlab = 18 + len(f"{n} {pct}") * 7.3 + 24
-        if lx + wlab > W - M:
-            lx, lyy = M, lyy + 22
-        out.append(f'<circle cx="{lx + 5}" cy="{lyy - 4}" r="5" fill="{col}"/>')
-        out.append(f'<text x="{lx + 16}" y="{lyy}" font-size="12" fill="{C["fg"]}">{escape(n)} <tspan fill="{C["dim"]}">{pct}</tspan></text>')
-        lx += wlab
-    divider(lyy + 22)
+    items = list(langs[:6])
+    if langs[6:]:
+        items.append(("Outras", "#6e7681", sum(x[2] for x in langs[6:])))
+    row_h = 32
+    block_h = 60 + 20 + len(ABOUT) * 22 + 36 + 24 + len(items) * row_h
+    y = top + max(0, (ah - block_h) / 2)
 
-    # 4) rodapé ----------------------------------------------------------------
-    fy = lyy + 54
-    prompt(fy, "", cursor=True)
-    now = datetime.now(BRT).strftime("%d/%m/%Y %H:%M")
-    t(W - M, fy, f"atualizado em {now} (BRT)", C["dim"], 11, 400, "end")
+    c.t(rx, y + 30, NAME, C["white"], 30, 700, cls="pop", delay=0.1)
+    c.t(rx, y + 54, SUB, C["dim"], 14, cls="pop", delay=0.2)
+    y += 60 + 20
+    for i, (k, v) in enumerate(ABOUT):
+        c.raw(f'<text class="pop" style="animation-delay:{0.3 + i * 0.08:.2f}s" x="{rx}" y="{y + 16 + i * 22:.1f}" font-size="14"><tspan fill="{C["blue"]}">{k}</tspan><tspan fill="{C["fg"]}"> {escape(v)}</tspan></text>')
+    y += len(ABOUT) * 22 + 36
+    c.t(rx, y, "linguagens", C["dim"], 11, cls="pop", delay=0.5)
+    y += 24
+    for i, (n, col, sz) in enumerate(items):
+        yy = y + i * row_h
+        dl = 0.55 + i * 0.07
+        pct = sz / total
+        c.raw(f'<g class="pop" style="animation-delay:{dl:.2f}s"><circle cx="{rx + 5}" cy="{yy - 4}" r="5" fill="{col}"/>'
+              f'<text x="{rx + 18}" y="{yy}" font-size="13" fill="{C["fg"]}">{escape(n)}</text>'
+              f'<text x="{rx + rw}" y="{yy}" font-size="13" fill="{C["dim"]}" text-anchor="end">{f"{pct * 100:.1f}".replace(".", ",")}%</text></g>')
+        c.raw(f'<rect x="{rx}" y="{yy + 8}" width="{rw}" height="4" rx="2" fill="{C["bar"]}"/>'
+              f'<rect class="gx" style="animation-delay:{dl + 0.1:.2f}s" x="{rx}" y="{yy + 8}" width="{max(4, pct * rw):.1f}" height="4" rx="2" fill="{col}"/>')
+    return c.render(int(top + ah + 26))
 
-    H = int(fy + 34)
-    head = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" font-family="{FONT}">
-<title>Perfil de {USER} no GitHub</title>
-<desc>Cartão em estilo terminal com contribuições, estatísticas e linguagens de {NAME}.</desc>
-<defs>
-<linearGradient id="asc" gradientUnits="userSpaceOnUse" x1="0" y1="{ay:.0f}" x2="0" y2="{ay + ah:.0f}"><stop offset="0" stop-color="#b6f5c0"/><stop offset="1" stop-color="#2ea043"/></linearGradient>
-<style>.cur{{fill:{C["fg"]};animation:blink 1.1s steps(1) infinite}}@keyframes blink{{50%{{fill:transparent}}}}@media (prefers-reduced-motion:reduce){{.cur{{animation:none}}}}</style>
-</defs>
-<rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="12" fill="{C["bg"]}" stroke="{C["line"]}"/>
-<path d="M0.5 40.5V12.5a12 12 0 0 1 12-12h915a12 12 0 0 1 12 12v28z" fill="{C["bar"]}"/>
-<line x1="0.5" y1="40.5" x2="{W - 0.5}" y2="40.5" stroke="{C["line"]}"/>
-<circle cx="24" cy="21" r="6" fill="#ff5f56"/><circle cx="44" cy="21" r="6" fill="#ffbd2e"/><circle cx="64" cy="21" r="6" fill="#27c93f"/>
-<text x="{W / 2}" y="26" text-anchor="middle" fill="{C["dim"]}" font-size="13">{USER} — zsh — 120×40</text>
+
+# ── Card 3: atividade ────────────────────────────────────────────────────────
+def card_activity(d: dict) -> str:
+    days = d["days"]
+    s = stats(days)
+    c = Card("./stats.sh", "Estatísticas de contribuição: streaks, dias ativos e contribuições por mês")
+    boxes = [("streak atual", s["cur"], "dias"), ("maior streak", s["longest"], "dias"),
+             ("contribuições", br(s["total"]), "no ano"), ("dias ativos", s["active"], f"de {len(days)}"),
+             ("melhor dia", s["best"], "contribuições"), ("média por dia ativo", f"{s['avg']:.1f}".replace(".", ","), "contribuições")]
+    gap = 12
+    bw, bh, by0 = (W - 2 * M - 2 * gap) / 3, 84, 58
+    for i, (lab, val, sub) in enumerate(boxes):
+        x, y = M + (i % 3) * (bw + gap), by0 + (i // 3) * (bh + gap)
+        c.raw(f'<g class="pop" style="animation-delay:{0.1 + i * 0.07:.2f}s"><rect x="{x:.1f}" y="{y}" width="{bw:.1f}" height="{bh}" rx="9" fill="{C["bg"]}" stroke="{C["line"]}"/>')
+        c.t(x + 18, y + 26, lab, C["dim"], 12)
+        c.t(x + 18, y + 64, val, C["accent"], 34, 700)
+        c.t(x + 18 + 20.4 * len(str(val)) + 10, y + 64, sub, C["dim"], 12)
+        c.raw("</g>")
+
+    cy = by0 + 2 * (bh + gap) + 24
+    c.t(M, cy, "contribuições por mês", C["dim"], 12)
+    per: dict = {}
+    for dt, v in days:
+        per[(dt.year, dt.month)] = per.get((dt.year, dt.month), 0) + v
+    keys = sorted(per)[-12:]
+    mx = max(per[k] for k in keys) or 1
+    hmax, base = 80, cy + 22 + 14 + 80
+    pitch = (W - 2 * M) / len(keys)
+    bwid = pitch - 16
+    for i, k in enumerate(keys):
+        v = per[k]
+        h = max(3, v / mx * hmax)
+        x = M + i * pitch + 8
+        c.raw(f'<rect class="gy" style="animation-delay:{0.3 + i * 0.05:.2f}s" x="{x:.1f}" y="{base - h:.1f}" width="{bwid:.1f}" height="{h:.1f}" rx="3" fill="{C["accent"]}" opacity="{0.5 + 0.5 * v / mx:.2f}"/>')
+        c.t(x + bwid / 2, base - h - 6, br(v), C["fg"] if v == mx else C["dim"], 11, 700 if v == mx else 400, "middle", cls="fade", delay=0.9 + i * 0.05)
+        c.t(x + bwid / 2, base + 17, MONTHS[k[1] - 1], C["dim"], 11, 400, "middle")
+    fy = base + 52
+    c.raw(f'<line x1="{M}" y1="{fy - 24}" x2="{W - M}" y2="{fy - 24}" stroke="{C["line"]}"/>')
+    c.prompt(fy, "", cursor=True)
+    c.t(W - M, fy, updated_stamp(), C["dim"], 11, 400, "end")
+    return c.render(int(fy + 24))
+
+
+# ── Faixas de título (como o "What I'm coding" do repositório de referência) ─
+def card_strip(cmd: str) -> str:
+    h = 46
+    H = h + 2 * OP
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{escape(cmd)}" font-family="{FONT}">
+<title>{escape(cmd)}</title>
+<g transform="translate(0,{OP})"><rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="10" fill="{C["bg"]}" stroke="{C["line"]}"/>
+<text x="{M}" y="28" font-size="14"><tspan fill="{C["green"]}" font-weight="600">{USER}@github</tspan><tspan fill="{C["dim"]}"> ~ </tspan><tspan fill="{C["fg"]}">$ {escape(cmd)}</tspan></text></g>
+</svg>
 '''
-    return head + "\n".join(out) + "\n</svg>\n"
 
 
 # ── Cards de projetos ────────────────────────────────────────────────────────
 def build_repo_card(r: dict) -> str:
-    W, H, P = 460, 132, 22
+    RW, RH, P = 440, 132, 22
+    W2, H2 = RW + 12, RH + 2 * OP        # 6px de respiro de cada lado: cards lado a lado não colam
     desc = r.get("description") or "Sem descrição."
-    lines = textwrap.wrap(desc, 56)
+    lines = textwrap.wrap(desc, 52)
     if len(lines) > 2:
         lines = lines[:2]
-        lines[1] = lines[1].rstrip(".,; ")[:53] + "…"
-    name = r["name"] if len(r["name"]) <= 32 else r["name"][:31] + "…"
+        lines[1] = lines[1].rstrip(".,; ")[:49] + "…"
+    name = r["name"] if len(r["name"]) <= 30 else r["name"][:29] + "…"
     out = [f'<g transform="translate({P},{P - 3}) scale(1.1)" fill="{C["dim"]}"><path d="{ICON_REPO}"/></g>',
            f'<text x="{P + 26}" y="{P + 12}" font-size="16" font-weight="700" fill="{C["green"]}">{escape(name)}</text>']
     for i, l in enumerate(lines):
         out.append(f'<text x="{P}" y="{P + 42 + i * 19}" font-size="12.5" fill="{C["dim"] if r.get("description") else "#6e7681"}">{escape(l)}</text>')
-    y, x = H - 24, P
+    y, x = RH - 24, P
     lang = r.get("primaryLanguage")
     if lang:
         out.append(f'<circle cx="{x + 5}" cy="{y - 4}" r="5" fill="{lang["color"] or C["dim"]}"/>'
@@ -355,11 +403,11 @@ def build_repo_card(r: dict) -> str:
                    f'<text x="{x + 19}" y="{y}" font-size="12" fill="{C["fg"]}">{n}</text>')
         x += 19 + len(str(n)) * 7.3 + 16
     if r.get("pushedAt"):
-        out.append(f'<text x="{W - P}" y="{y}" font-size="11" fill="#6e7681" text-anchor="end">{ago(r["pushedAt"])}</text>')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" font-family="{FONT}">
+        out.append(f'<text x="{RW - P}" y="{y}" font-size="11" fill="#6e7681" text-anchor="end">{ago(r["pushedAt"])}</text>')
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W2}" height="{H2}" viewBox="0 0 {W2} {H2}" role="img" aria-label="{escape(r["name"])}" font-family="{FONT}">
 <title>{escape(r["name"])}</title>
-<rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10" fill="{C["bg"]}" stroke="{C["line"]}"/>
-{chr(10).join(out)}
+<g transform="translate(6,{OP})"><rect x="0.5" y="0.5" width="{RW - 1}" height="{RH - 1}" rx="10" fill="{C["bg"]}" stroke="{C["line"]}"/>
+{chr(10).join(out)}</g>
 </svg>
 '''
 
@@ -368,14 +416,16 @@ def slug(n: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]", "_", n)
 
 
-def update_readme(repos: list[dict]) -> None:
+def update_readme(repos: list) -> None:
     src = ROOT / "README.md"
     if not src.exists():
         return
     md = src.read_text(encoding="utf-8")
-    cards = "\n".join(f'<a href="{r["url"]}"><img src="./assets/repo-{slug(r["name"])}.svg" alt="{escape(r["name"])}" width="48%"/></a>'
-                      for r in repos)
-    block = f'<!-- PROJECTS:START -->\n<div align="center">\n\n{cards}\n\n</div>\n<!-- PROJECTS:END -->'
+    per_row = 3 if len(repos) % 3 == 0 else 2
+    pct = f"{100 / per_row:.3f}".rstrip("0").rstrip(".")
+    imgs = [f'<a href="{r["url"]}"><img src="./cards/repo-{slug(r["name"])}.svg" width="{pct}%" alt="{escape(r["name"])}" /></a>' for r in repos]
+    rows = "<br>\n".join("".join(imgs[i:i + per_row]) for i in range(0, len(imgs), per_row))
+    block = f"<!-- PROJECTS:START -->\n{rows}\n<!-- PROJECTS:END -->"
     new, n = re.subn(r"<!-- PROJECTS:START -->.*?<!-- PROJECTS:END -->", lambda _: block, md, flags=re.S)
     if n:
         (OUT / "README.md").write_text(new, encoding="utf-8")
@@ -383,18 +433,24 @@ def update_readme(repos: list[dict]) -> None:
 
 def main() -> None:
     d = demo_data() if DEMO else fetch_data()
-    (OUT / "assets").mkdir(parents=True, exist_ok=True)
-    (OUT / "profile-card.svg").write_text(build_card(d), encoding="utf-8")
-    keep = set()
+    cards = OUT / "cards"
+    cards.mkdir(parents=True, exist_ok=True)
+    files = {"heatmap.svg": card_heatmap(d), "profile.svg": card_profile(d), "activity.svg": card_activity(d),
+             "title-projetos.svg": card_strip("ls projetos/"), "title-links.svg": card_strip("./links.sh")}
+    keep = set(files)
+    for name, svg in files.items():
+        (cards / name).write_text(svg, encoding="utf-8")
     for r in d["repos"]:
-        f = OUT / "assets" / f"repo-{slug(r['name'])}.svg"
-        f.write_text(build_repo_card(r), encoding="utf-8")
-        keep.add(f.name)
-    for old in (OUT / "assets").glob("repo-*.svg"):
+        f = f"repo-{slug(r['name'])}.svg"
+        (cards / f).write_text(build_repo_card(r), encoding="utf-8")
+        keep.add(f)
+    for old in cards.glob("*.svg"):
         if old.name not in keep:
             old.unlink()
+    for legacy in [OUT / "profile-card.svg", *(OUT / "assets").glob("repo-*.svg")]:   # versão anterior
+        legacy.unlink(missing_ok=True)
     update_readme(d["repos"])
-    print("ok ->", OUT)
+    print("ok ->", cards)
 
 
 if __name__ == "__main__":
