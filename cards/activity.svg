@@ -33,13 +33,13 @@
 </g>
 <g class="pop" style="animation-delay:0.24s"><rect x="582.7" y="58" width="261.3" height="84" rx="9" fill="#0d1117" stroke="#30363d"/>
 <text x="600.7" y="84.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">contribuições</text>
-<text x="600.7" y="122.0" fill="#39d353" font-size="34" font-weight="700" text-anchor="start">622</text>
+<text x="600.7" y="122.0" fill="#39d353" font-size="34" font-weight="700" text-anchor="start">636</text>
 <text x="671.9" y="122.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">no ano</text>
 </g>
 <g class="pop" style="animation-delay:0.31s"><rect x="36.0" y="154" width="261.3" height="84" rx="9" fill="#0d1117" stroke="#30363d"/>
 <text x="54.0" y="180.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">dias ativos</text>
 <text x="54.0" y="218.0" fill="#39d353" font-size="34" font-weight="700" text-anchor="start">76</text>
-<text x="104.8" y="218.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">de 368</text>
+<text x="104.8" y="218.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">de 369</text>
 </g>
 <g class="pop" style="animation-delay:0.38s"><rect x="309.3" y="154" width="261.3" height="84" rx="9" fill="#0d1117" stroke="#30363d"/>
 <text x="327.3" y="180.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">melhor dia</text>
@@ -48,7 +48,7 @@
 </g>
 <g class="pop" style="animation-delay:0.45s"><rect x="582.7" y="154" width="261.3" height="84" rx="9" fill="#0d1117" stroke="#30363d"/>
 <text x="600.7" y="180.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">média por dia ativo</text>
-<text x="600.7" y="218.0" fill="#39d353" font-size="34" font-weight="700" text-anchor="start">8,2</text>
+<text x="600.7" y="218.0" fill="#39d353" font-size="34" font-weight="700" text-anchor="start">8,4</text>
 <text x="671.9" y="218.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">contribuições</text>
 </g>
 <text x="36.0" y="274.0" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">contribuições por mês</text>
@@ -61,11 +61,11 @@
 <rect class="gy" style="animation-delay:0.40s" x="178.7" y="387.0" width="51.3" height="3.0" rx="3" fill="#39d353" opacity="0.50"/>
 <text class="fade" style="animation-delay:1.00s" x="204.3" y="381.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">0</text>
 <text x="204.3" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">fev</text>
-<rect class="gy" style="animation-delay:0.45s" x="246.0" y="377.2" width="51.3" height="12.8" rx="3" fill="#39d353" opacity="0.58"/>
-<text class="fade" style="animation-delay:1.05s" x="271.7" y="371.2" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">31</text>
+<rect class="gy" style="animation-delay:0.45s" x="246.0" y="377.5" width="51.3" height="12.5" rx="3" fill="#39d353" opacity="0.58"/>
+<text class="fade" style="animation-delay:1.05s" x="271.7" y="371.5" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">31</text>
 <text x="271.7" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">mar</text>
-<rect class="gy" style="animation-delay:0.50s" x="313.3" y="370.1" width="51.3" height="19.9" rx="3" fill="#39d353" opacity="0.62"/>
-<text class="fade" style="animation-delay:1.10s" x="339.0" y="364.1" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">48</text>
+<rect class="gy" style="animation-delay:0.50s" x="313.3" y="370.6" width="51.3" height="19.4" rx="3" fill="#39d353" opacity="0.62"/>
+<text class="fade" style="animation-delay:1.10s" x="339.0" y="364.6" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">48</text>
 <text x="339.0" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">abr</text>
 <rect class="gy" style="animation-delay:0.55s" x="380.7" y="387.0" width="51.3" height="3.0" rx="3" fill="#39d353" opacity="0.52"/>
 <text class="fade" style="animation-delay:1.15s" x="406.3" y="381.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">7</text>
@@ -73,23 +73,23 @@
 <rect class="gy" style="animation-delay:0.60s" x="448.0" y="387.0" width="51.3" height="3.0" rx="3" fill="#39d353" opacity="0.51"/>
 <text class="fade" style="animation-delay:1.20s" x="473.7" y="381.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">4</text>
 <text x="473.7" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">jun</text>
-<rect class="gy" style="animation-delay:0.65s" x="515.3" y="384.6" width="51.3" height="5.4" rx="3" fill="#39d353" opacity="0.53"/>
-<text class="fade" style="animation-delay:1.25s" x="541.0" y="378.6" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">13</text>
+<rect class="gy" style="animation-delay:0.65s" x="515.3" y="384.7" width="51.3" height="5.3" rx="3" fill="#39d353" opacity="0.53"/>
+<text class="fade" style="animation-delay:1.25s" x="541.0" y="378.7" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">13</text>
 <text x="541.0" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">jul</text>
-<rect class="gy" style="animation-delay:0.70s" x="582.7" y="360.2" width="51.3" height="29.8" rx="3" fill="#39d353" opacity="0.69"/>
-<text class="fade" style="animation-delay:1.30s" x="608.3" y="354.2" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">72</text>
+<rect class="gy" style="animation-delay:0.70s" x="582.7" y="360.9" width="51.3" height="29.1" rx="3" fill="#39d353" opacity="0.68"/>
+<text class="fade" style="animation-delay:1.30s" x="608.3" y="354.9" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">72</text>
 <text x="608.3" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">ago</text>
-<rect class="gy" style="animation-delay:0.75s" x="650.0" y="361.0" width="51.3" height="29.0" rx="3" fill="#39d353" opacity="0.68"/>
-<text class="fade" style="animation-delay:1.35s" x="675.7" y="355.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">70</text>
+<rect class="gy" style="animation-delay:0.75s" x="650.0" y="361.7" width="51.3" height="28.3" rx="3" fill="#39d353" opacity="0.68"/>
+<text class="fade" style="animation-delay:1.35s" x="675.7" y="355.7" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">70</text>
 <text x="675.7" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">set</text>
-<rect class="gy" style="animation-delay:0.80s" x="717.3" y="310.0" width="51.3" height="80.0" rx="3" fill="#39d353" opacity="1.00"/>
-<text class="fade" style="animation-delay:1.40s" x="743.0" y="304.0" fill="#c9d1d9" font-size="11" font-weight="700" text-anchor="middle">193</text>
+<rect class="gy" style="animation-delay:0.80s" x="717.3" y="312.0" width="51.3" height="78.0" rx="3" fill="#39d353" opacity="0.99"/>
+<text class="fade" style="animation-delay:1.40s" x="743.0" y="306.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">193</text>
 <text x="743.0" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">out</text>
-<rect class="gy" style="animation-delay:0.85s" x="784.7" y="313.7" width="51.3" height="76.3" rx="3" fill="#39d353" opacity="0.98"/>
-<text class="fade" style="animation-delay:1.45s" x="810.3" y="307.7" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">184</text>
+<rect class="gy" style="animation-delay:0.85s" x="784.7" y="310.0" width="51.3" height="80.0" rx="3" fill="#39d353" opacity="1.00"/>
+<text class="fade" style="animation-delay:1.45s" x="810.3" y="304.0" fill="#c9d1d9" font-size="11" font-weight="700" text-anchor="middle">198</text>
 <text x="810.3" y="407.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="middle">nov</text>
 <line x1="36" y1="418" x2="844" y2="418" stroke="#30363d"/>
 <text x="36" y="442" font-size="14"><tspan fill="#7ee787" font-weight="600">thallesgsrv@github</tspan><tspan fill="#8b949e"> ~ </tspan><tspan fill="#c9d1d9">$ </tspan><tspan class="cur"> _</tspan></text>
-<text x="844.0" y="442.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="end">atualizado em 18/11/2026 11:56 (BRT)</text>
+<text x="844.0" y="442.0" fill="#8b949e" font-size="11" font-weight="400" text-anchor="end">atualizado em 19/11/2026 12:02 (BRT)</text>
 </g>
 </svg>
